@@ -12,8 +12,10 @@ Subclass of QStyledItemDelegate to format view
 # python
 import logging
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
+from Qt import QtWidgets
+
 # nuke
 import nuke
 
@@ -53,7 +55,7 @@ BLUE = renderthreads_globals.BLUE
 
 # RenderThreadsItemDelegate
 # ------------------------------------------------------------------
-class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
+class RenderThreadsItemDelegate(QtWidgets.QStyledItemDelegate):
     """
     Subclass of QStyledItemDelegate.
     """
@@ -133,7 +135,7 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
                 value_string += str(value + ';\n')
 
             # text_size
-            q_font_metrics = QtGui.QFontMetrics(QtGui.QApplication.font())
+            q_font_metrics = QtGui.QFontMetrics(QtWidgets.QApplication.font())
             text_size = q_font_metrics.size(0, value_string)
             return text_size
 
@@ -144,7 +146,7 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
             value_string = data.fullName()
 
             # text_size
-            q_font_metrics = QtGui.QFontMetrics(QtGui.QApplication.font())
+            q_font_metrics = QtGui.QFontMetrics(QtWidgets.QApplication.font())
             text_size = q_font_metrics.size(0, value_string)
             return text_size
 
@@ -345,7 +347,7 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         progressbar_option.textVisible = True
 
         # draw
-        QtGui.QApplication.instance().style().drawControl(QtGui.QStyle.CE_ProgressBar, progressbar_option, painter)
+        QtWidgets.QApplication.instance().style().drawControl(QtGui.QStyle.CE_ProgressBar, progressbar_option, painter)
 
     # Custom Editors
     # ------------------------------------------------------------------

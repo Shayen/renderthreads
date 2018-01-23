@@ -11,10 +11,13 @@ Module that has renderthreads tool globals
 # ------------------------------------------------------------------
 # import
 import os
+import sys
 import logging
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+# from PySide import QtGui
+# from PySide import QtCore
+
+
 
 
 # Version and Title
@@ -41,6 +44,17 @@ ICONS_PATH = os.path.join(MEDIA_PATH, 'icons')
 FONTS_PATH = os.path.join(MEDIA_PATH, 'fonts')
 UI_PATH = os.path.join(MEDIA_PATH, 'ui')
 
+# PySide
+if THIRD_PARTY_PATH not in sys.path :
+	print ("Add path : " + THIRD_PARTY_PATH)
+	sys.path.append(THIRD_PARTY_PATH)
+
+from Qt import QtGui
+from Qt import QtCore
+try:
+    from PySide import QtUiTools
+except :
+    from PySide2 import QtUiTools
 
 # Fonts
 # ------------------------------------------------------------------
@@ -56,12 +70,12 @@ FONTS_LIST = [FUTURA_LT_LIGHT]
 
 # iterate and install if not installed
 for font_name, font_file_name in FONTS_LIST:
-    # font not installed
-    if not (font_name in QtGui.QFontDatabase().families()):
-        # current_font_path
-        current_font_path = os.path.join(FONTS_PATH, font_file_name).replace('\\', '/')
-        # add font
-        QtGui.QFontDatabase.addApplicationFont(current_font_path)
+	# font not installed
+	if not (font_name in QtGui.QFontDatabase().families()):
+		# current_font_path
+		current_font_path = os.path.join(FONTS_PATH, font_file_name).replace('\\', '/')
+		# add font
+		QtGui.QFontDatabase.addApplicationFont(current_font_path)
 
 
 # Colors

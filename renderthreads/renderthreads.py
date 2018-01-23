@@ -41,10 +41,10 @@ sys.path.append(tool_root_path)
 # python
 import functools
 import logging
-# PySide
-from PySide import QtGui
-from PySide import QtCore
-from PySide import QtUiTools
+# # PySide
+# from PySide import QtGui
+# from PySide import QtCore
+# from PySide import QtUiTools
 
 
 # Import variable
@@ -115,6 +115,24 @@ INITIAL_LOGGING_LEVEL = renderthreads_globals.INITIAL_LOGGING_LEVEL
 
 INITIAL_THREAD_INTERVAL = renderthreads_globals.INITIAL_THREAD_INTERVAL
 
+# Pathes
+THIRD_PARTY_PATH = renderthreads_globals.THIRD_PARTY_PATH
+
+# PySide
+if THIRD_PARTY_PATH not in sys.path :
+    sys.path.append(THIRD_PARTY_PATH)
+
+from Qt import QtGui
+from Qt import QtCore
+try:
+    from PySide import QtUiTools
+except :
+    from PySide2 import QtUiTools
+
+# print qt version
+from Qt import __binding__
+from Qt import QtCompat, QtWidgets
+print ("Qt version : " + __binding__)
 
 # form_class, base_class
 # ------------------------------------------------------------------
@@ -123,12 +141,30 @@ ui_file_name = 'renderthreads.ui'
 ui_file = os.path.join(UI_PATH, ui_file_name)
 
 # form_class, base_class
-form_class, base_class = renderthreads_gui_helper.load_ui_type(ui_file)
+# form_class, base_class = renderthreads_gui_helper.load_ui_type(ui_file)
+# ui = QtCompat.loadUi(ui_file)
 
+def setup_ui(uifile, base_instance=None):
+    """Load a Qt Designer .ui file and returns an instance of the user interface
+    Args:
+        uifile (str): Absolute path to .ui file
+        base_instance (QWidget): The widget into which UI widgets are loaded
+    Returns:
+        QWidget: the base instance
+    """
+    ui = QtCompat.loadUi(uifile)  # Qt.py mapped function
+    if not base_instance:
+        return ui
+    else:
+        for member in dir(ui):
+            if not member.startswith('__') and \
+               member is not 'staticMetaObject':
+                setattr(base_instance, member, getattr(ui, member))
+        return ui
 
 # RenderThreads class
 # ------------------------------------------------------------------
-class RenderThreads(form_class, base_class):
+class RenderThreads(QtWidgets.QWidget):
     """
     RenderThreads class.
     """
@@ -172,12 +208,14 @@ class RenderThreads(form_class, base_class):
         """
         Customize instance.
         """
+        QtWidgets.QWidget.__init__(self, parent)
+        self.base_instance = setup_ui(ui_file, self)
 
         # super and objectName
         # ------------------------------------------------------------------
         # super
         self.parent_class = super(RenderThreads, self)
-        self.parent_class.__init__(parent)
+        # self.parent_class.__init__(parent)
 
         # setObjectName
         self.setObjectName(self.__class__.__name__)
@@ -199,7 +237,7 @@ class RenderThreads(form_class, base_class):
         self.thread_manager.setup_threads(thread_interval=INITIAL_THREAD_INTERVAL)
 
         # setupUi
-        self.setupUi(self)
+        # self.setupUi(self)
 
         # setup_additional_ui
         renderthreads_gui_setup.setup_additional_ui(self)

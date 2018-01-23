@@ -17,8 +17,8 @@ ranges or values to the needed signals or values.
 import os
 import logging
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
 
 
 # Import variable

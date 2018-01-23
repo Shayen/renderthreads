@@ -16,8 +16,9 @@ import logging
 import functools
 import multiprocessing
 #  PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
+from Qt import QtWidgets
 
 
 #  Import variable
@@ -210,7 +211,7 @@ def create_stkwdgt_menu(wdgt):
     lyt_stkwdgt_menu = wdgt.wdgt_stkwdgt_menu.layout()
 
     # mnubar_stkwdgt
-    wdgt.mnubar_stkwdgt = QtGui.QMenuBar(parent=wdgt)
+    wdgt.mnubar_stkwdgt = QtWidgets.QMenuBar(parent=wdgt)
     wdgt.mnubar_stkwdgt.setObjectName('mnubar_stkwdgt')
     lyt_stkwdgt_menu.addWidget(wdgt.mnubar_stkwdgt)
 
@@ -231,17 +232,17 @@ def create_stkwdgt_menu(wdgt):
     wdgt.acn_options.setObjectName('acn_options')
 
     # mnu_about
-    wdgt.mnu_about = QtGui.QMenu('About', parent=wdgt)
+    wdgt.mnu_about = QtWidgets.QMenu('About', parent=wdgt)
     wdgt.mnu_about.setObjectName('mnu_about')
     wdgt.mnubar_stkwdgt.addMenu(wdgt.mnu_about)
 
     # acn_open_website_docs
-    wdgt.acn_open_website_docs = QtGui.QAction('Docs', wdgt)
+    wdgt.acn_open_website_docs = QtWidgets.QAction('Docs', wdgt)
     wdgt.acn_open_website_docs.setObjectName('acn_open_website_docs')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_docs)
 
     # acn_open_website_docs_quick
-    wdgt.acn_open_website_docs_quick = QtGui.QAction('Qick intro', wdgt)
+    wdgt.acn_open_website_docs_quick = QtWidgets.QAction('Qick intro', wdgt)
     wdgt.acn_open_website_docs_quick.setObjectName('acn_open_website_docs_quick')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_docs_quick)
 
@@ -249,7 +250,7 @@ def create_stkwdgt_menu(wdgt):
     wdgt.mnu_about.addSeparator()
 
     # acn_open_website_pypi
-    wdgt.acn_open_website_pypi = QtGui.QAction('PyPI', wdgt)
+    wdgt.acn_open_website_pypi = QtWidgets.QAction('PyPI', wdgt)
     wdgt.acn_open_website_pypi.setObjectName('acn_open_website_pypi')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_pypi)
 
@@ -257,12 +258,12 @@ def create_stkwdgt_menu(wdgt):
     wdgt.mnu_about.addSeparator()
 
     # acn_open_website_github
-    wdgt.acn_open_website_github = QtGui.QAction('Github', wdgt)
+    wdgt.acn_open_website_github = QtWidgets.QAction('Github', wdgt)
     wdgt.acn_open_website_github.setObjectName('acn_open_website_github')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_github)
 
     # acn_open_website_github_issues
-    wdgt.acn_open_website_github_issues = QtGui.QAction('Report a bug', wdgt)
+    wdgt.acn_open_website_github_issues = QtWidgets.QAction('Report a bug', wdgt)
     wdgt.acn_open_website_github_issues.setObjectName('acn_open_website_github_issues')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_github_issues)
 
@@ -270,17 +271,17 @@ def create_stkwdgt_menu(wdgt):
     wdgt.mnu_about.addSeparator()
 
     # acn_open_website_author
-    wdgt.acn_open_website_author = QtGui.QAction('Author', wdgt)
+    wdgt.acn_open_website_author = QtWidgets.QAction('Author', wdgt)
     wdgt.acn_open_website_author.setObjectName('acn_open_website_author')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_author)
 
     # acn_open_website_vimeo
-    wdgt.acn_open_website_vimeo = QtGui.QAction('Vimeo', wdgt)
+    wdgt.acn_open_website_vimeo = QtWidgets.QAction('Vimeo', wdgt)
     wdgt.acn_open_website_vimeo.setObjectName('acn_open_website_vimeo')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_vimeo)
 
     # acn_open_website_linkedin
-    wdgt.acn_open_website_linkedin = QtGui.QAction('Linkedin', wdgt)
+    wdgt.acn_open_website_linkedin = QtWidgets.QAction('Linkedin', wdgt)
     wdgt.acn_open_website_linkedin.setObjectName('acn_open_website_linkedin')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_linkedin)
 
@@ -317,7 +318,7 @@ def create_sub_threads_menu(wdgt):
                                                                 minimum=1,
                                                                 maximum=wdgt.thread_manager.get_max_threads(),
                                                                 initial_value=wdgt.thread_manager.get_thread_count())
-    wdgt.sldr_threadcount.set_tick_position(QtGui.QSlider.TicksBelow)
+    wdgt.sldr_threadcount.set_tick_position(QtWidgets.QSlider.TicksBelow)
     wdgt.sldr_threadcount.set_tick_interval(1)
     wdgt.sldr_threadcount.setToolTip(TT_THREADCOUNT)
     frm_threads.addWidget(wdgt.sldr_threadcount)
@@ -327,7 +328,7 @@ def create_sub_threads_menu(wdgt):
                                                                 minimum=100,
                                                                 maximum=10000,
                                                                 initial_value=INITIAL_THREAD_INTERVAL)
-    wdgt.sldr_thread_interval.set_tick_position(QtGui.QSlider.TicksBelow)
+    wdgt.sldr_thread_interval.set_tick_position(QtWidgets.QSlider.TicksBelow)
     wdgt.sldr_thread_interval.set_tick_interval(100)
     wdgt.sldr_thread_interval.setToolTip(TT_THREAD_INTERVAL)
     frm_threads.addWidget(wdgt.sldr_thread_interval)
@@ -338,7 +339,7 @@ def create_sub_threads_menu(wdgt):
                                                                     maximum=120,
                                                                     tracking=False,
                                                                     initial_value=INITIAL_THREAD_TIMEOUT)
-    wdgt.sldr_thread_timeout.set_tick_position(QtGui.QSlider.TicksBelow)
+    wdgt.sldr_thread_timeout.set_tick_position(QtWidgets.QSlider.TicksBelow)
     wdgt.sldr_thread_timeout.set_tick_interval(10)
     wdgt.sldr_thread_timeout.setToolTip(TT_THREAD_TIMEOUT)
     frm_threads.addWidget(wdgt.sldr_thread_timeout)
@@ -348,7 +349,7 @@ def create_sub_threads_menu(wdgt):
                                                                     minimum=0,
                                                                     maximum=1,
                                                                     initial_value=INITIAL_DISPLAY_SHELL)
-    wdgt.sldr_display_shell.set_tick_position(QtGui.QSlider.TicksBelow)
+    wdgt.sldr_display_shell.set_tick_position(QtWidgets.QSlider.TicksBelow)
     wdgt.sldr_display_shell.set_tick_interval(1)
     wdgt.sldr_display_shell.setToolTip(TT_DISPLAY_SHELL)
     frm_threads.addWidget(wdgt.sldr_display_shell)
@@ -358,7 +359,7 @@ def create_sub_threads_menu(wdgt):
                                                                     minimum=0,
                                                                     maximum=1,
                                                                     initial_value=INITIAL_LOG_EXITCODE_ERRORS_ONLY)
-    wdgt.sldr_log_exitcode_errors_only.set_tick_position(QtGui.QSlider.TicksBelow)
+    wdgt.sldr_log_exitcode_errors_only.set_tick_position(QtWidgets.QSlider.TicksBelow)
     wdgt.sldr_log_exitcode_errors_only.set_tick_interval(1)
     wdgt.sldr_log_exitcode_errors_only.setToolTip(TT_LOG_EXITCODE_ERRORS_ONLY)
     frm_threads.addWidget(wdgt.sldr_log_exitcode_errors_only)
@@ -368,18 +369,18 @@ def create_sub_threads_menu(wdgt):
                                                                             minimum=0,
                                                                             maximum=10,
                                                                             initial_value=INITIAL_READD_BROKEN_JOB_COUNT)
-    wdgt.sldr_readd_broken_job_count.set_tick_position(QtGui.QSlider.TicksBelow)
+    wdgt.sldr_readd_broken_job_count.set_tick_position(QtWidgets.QSlider.TicksBelow)
     wdgt.sldr_readd_broken_job_count.set_tick_interval(1)
     wdgt.sldr_readd_broken_job_count.setToolTip(TT_INITIAL_READD_BROKEN_JOB_COUNT)
     frm_threads.addWidget(wdgt.sldr_readd_broken_job_count)
 
     # btn_start_threads
-    wdgt.btn_start_threads = QtGui.QPushButton('Re/Start threads')
+    wdgt.btn_start_threads = QtWidgets.QPushButton('Re/Start threads')
     wdgt.btn_start_threads.setFlat(True)
     frm_threads.addWidget(wdgt.btn_start_threads)
 
     # btn_stop_threads
-    wdgt.btn_stop_threads = QtGui.QPushButton('Stop threads')
+    wdgt.btn_stop_threads = QtWidgets.QPushButton('Stop threads')
     wdgt.btn_stop_threads.setFlat(True)
     frm_threads.addWidget(wdgt.btn_stop_threads)
 
@@ -393,7 +394,7 @@ def create_queue_menu(wdgt):
     lyt_frm_queue = wdgt.frm_queue.layout()
 
     # btn_print_queue_size
-    wdgt.btn_print_queue_size = QtGui.QPushButton('Print queue size')
+    wdgt.btn_print_queue_size = QtWidgets.QPushButton('Print queue size')
     wdgt.btn_print_queue_size.setFlat(True)
     lyt_frm_queue.addWidget(wdgt.btn_print_queue_size)
 
@@ -436,7 +437,7 @@ might be invalid and cause the render to fail.'.format(TEXT_DIVIDER)
     lyt_frm_command_line = wdgt.frm_command_line.layout()
 
     # lbl_command_line
-    wdgt.lbl_command_line = QtGui.QLabel(parent=wdgt)
+    wdgt.lbl_command_line = QtWidgets.QLabel(parent=wdgt)
     wdgt.lbl_command_line.setObjectName('lbl_command_line')
     wdgt.lbl_command_line.setText('temp')
     wdgt.lbl_command_line.setWordWrap(True)
@@ -496,7 +497,7 @@ def create_flags_menu(wdgt):
 
     # flg_c
     tooltip = 'Limit cache memory usage. Size is in bytes\nor append k, M, G or T'
-    wdgt_parameter = QtGui.QLineEdit(parent=wdgt)
+    wdgt_parameter = QtWidgets.QLineEdit(parent=wdgt)
     wdgt.flg_c = renderthreads_command_line_flag_widget.CommandLineFlag(flag='-c',
                                                                         state=False,
                                                                         tooltip=tooltip,
@@ -558,7 +559,7 @@ A range can be one of:\n\
 {0}\n\
 THIS FLAG IS NOT AVAILABLE FOR USER INPUT\n\
 SINCE IT IS HANDLED BY THE TOOL INTERNALLY.'.format(TEXT_DIVIDER)
-    wdgt_parameter = QtGui.QSpinBox(parent=wdgt)
+    wdgt_parameter = QtWidgets.QSpinBox(parent=wdgt)
     wdgt_parameter.setValue(1)
     wdgt.flg_F = renderthreads_command_line_flag_widget.CommandLineFlag(flag='-F',
                                                                         tooltip=tooltip,
@@ -576,7 +577,7 @@ SINCE IT IS HANDLED BY THE TOOL INTERNALLY.'.format(TEXT_DIVIDER)
     # flg_gpu
     tooltip = 'Enables GPU usage when in terminal mode with an optional gpu index argument\n\
 that defaults to 0 if none given. Will override preferences when in interactive mode.'
-    wdgt_parameter = QtGui.QLineEdit(text='0', parent=wdgt)
+    wdgt_parameter = QtWidgets.QLineEdit(text='0', parent=wdgt)
     wdgt.flg_gpu = renderthreads_command_line_flag_widget.CommandLineFlag(flag='--gpu',
                                                                             state=False,
                                                                             tooltip=tooltip,
@@ -657,7 +658,7 @@ that defaults to 0 if none given. Will override preferences when in interactive 
     # flg_m
     tooltip = 'Set threads count.'
     cpu_count = multiprocessing.cpu_count()
-    wdgt_parameter = QtGui.QSpinBox(parent=wdgt)
+    wdgt_parameter = QtWidgets.QSpinBox(parent=wdgt)
     wdgt_parameter.setMinimum(1)
     wdgt_parameter.setMaximum(cpu_count)
     wdgt_parameter.setValue(cpu_count)
@@ -771,7 +772,7 @@ Choose from:\n\
 high (only available to super user on Linux/OS X)\n\
 medium\n\
 low'
-    wdgt_parameter = QtGui.QComboBox(parent=wdgt)
+    wdgt_parameter = QtWidgets.QComboBox(parent=wdgt)
     wdgt_parameter.insertItems(0, ['high', 'medium', 'low'])
     wdgt.flg_priority = renderthreads_command_line_flag_widget.CommandLineFlag(flag='--priority',
                                                                                 state=False,
@@ -801,7 +802,7 @@ low'
     # flg_s
     tooltip = 'Sets the minimum stack size for each thread in bytes;\n\
 this defaults to 16777216 (16MB) the smallest allowed value is 1048576 (1MB).'
-    wdgt_parameter = QtGui.QSpinBox(parent=wdgt)
+    wdgt_parameter = QtWidgets.QSpinBox(parent=wdgt)
     wdgt_parameter.setMinimum(1048576)
     wdgt_parameter.setMaximum(1048576 * 1000)
     wdgt_parameter.setValue(16777216)
@@ -864,7 +865,7 @@ PyQt can be used. Needs an X session.'
 0 (not verbose)\n\
 1 (output nuke script load and save)\n\
 2 (output loading plugins, python, tcl, nuke scripts, progress and buffer report).'
-    wdgt_parameter = QtGui.QSpinBox(parent=wdgt)
+    wdgt_parameter = QtWidgets.QSpinBox(parent=wdgt)
     wdgt_parameter.setMinimum(0)
     wdgt_parameter.setMaximum(2)
     wdgt_parameter.setValue(0)
@@ -882,7 +883,7 @@ PyQt can be used. Needs an X session.'
 
     # flg_view
     tooltip = 'Only execute these views (comma-separated list: e.g. \'left,right\').'
-    wdgt_parameter = QtGui.QLineEdit(text='', parent=wdgt)
+    wdgt_parameter = QtWidgets.QLineEdit(text='', parent=wdgt)
     wdgt.flg_view = renderthreads_command_line_flag_widget.CommandLineFlag(flag='--view',
                                                                             state=False,
                                                                             tooltip=tooltip,
@@ -928,7 +929,7 @@ SINCE IT IS HANDLED BY THE TOOL INTERNALLY.'.format(TEXT_DIVIDER)
 {0}\n\
 THIS FLAG IS NOT AVAILABLE FOR USER INPUT\n\
 SINCE IT IS HANDLED BY THE TOOL INTERNALLY.'.format(TEXT_DIVIDER)
-    wdgt_parameter = QtGui.QLineEdit(text=WRITE_NODE_REPLACEMENT_TEMPLATE, parent=wdgt)
+    wdgt_parameter = QtWidgets.QLineEdit(text=WRITE_NODE_REPLACEMENT_TEMPLATE, parent=wdgt)
     wdgt.flg_X = renderthreads_command_line_flag_widget.CommandLineFlag(flag='-X',
                                                                         tooltip=tooltip,
                                                                         checkable=False,
@@ -949,7 +950,7 @@ map to the second path in each pair e.g. -remap "X:/path,B:/,Y:/,Z:/foo"\n\
 The path X:/path/file.nk will be mapped to B:/file.nk\n\
 The path Y:/bar/something.nk will be mapped to Z:/foo/bar/something.nk\n\
 This option will cause an error if there are not an equal number of \'map froms\' and \'map to\' entries in the list.'
-    wdgt_parameter = QtGui.QLineEdit(text='', parent=wdgt)
+    wdgt_parameter = QtWidgets.QLineEdit(text='', parent=wdgt)
     wdgt.flg_remap = renderthreads_command_line_flag_widget.CommandLineFlag(flag='--remap',
                                                                             state=False,
                                                                             tooltip=tooltip,
@@ -966,7 +967,7 @@ This option will cause an error if there are not an equal number of \'map froms\
     tooltip = 'Specify 1 or 0 for whether the crash handler should be started or not.\n\
 By default it only starts in GUI mode.\n\
 This can also be controlled by using the environment variable NUKE_CRASH_HANDLING.'
-    wdgt_parameter = QtGui.QSpinBox(parent=wdgt)
+    wdgt_parameter = QtWidgets.QSpinBox(parent=wdgt)
     wdgt_parameter.setMinimum(0)
     wdgt_parameter.setMaximum(1)
     wdgt_parameter.setValue(0)
@@ -1010,12 +1011,12 @@ def create_constants_menu(wdgt):
     nuke_path = renderthreads_nuke.get_nuke_path()
 
     # lbl_script_path
-    wdgt.lbl_script_path = QtGui.QLabel(text='Nuke Script', parent=wdgt)
+    wdgt.lbl_script_path = QtWidgets.QLabel(text='Nuke Script', parent=wdgt)
     wdgt.lbl_script_path.setObjectName('lbl_script_path')
     lyt_frm_constants.addWidget(wdgt.lbl_script_path)
 
     # le_script_path
-    wdgt.le_script_path = QtGui.QLineEdit(parent=wdgt)
+    wdgt.le_script_path = QtWidgets.QLineEdit(parent=wdgt)
     wdgt.le_script_path.setObjectName('le_script_path')
     wdgt.le_script_path.setText(nuke_script_path)
     wdgt.le_script_path.setReadOnly(True)
@@ -1025,27 +1026,27 @@ def create_constants_menu(wdgt):
     renderthreads_gui_helper.insert_spacer_widget(lyt_frm_constants, 0, COMMAND_LINE_FLAG_SPACING, wdgt)
 
     # lbl_nuke_path
-    wdgt.lbl_nuke_path = QtGui.QLabel(text='Nuke Executable', parent=wdgt)
+    wdgt.lbl_nuke_path = QtWidgets.QLabel(text='Nuke Executable', parent=wdgt)
     wdgt.lbl_nuke_path.setObjectName('lbl_nuke_path')
     lyt_frm_constants.addWidget(wdgt.lbl_nuke_path)
 
     # wdgt_nuke_path
-    wdgt.wdgt_nuke_path = QtGui.QWidget(parent=wdgt)
+    wdgt.wdgt_nuke_path = QtWidgets.QWidget(parent=wdgt)
     wdgt.wdgt_nuke_path.setObjectName('wdgt_nuke_path')
-    wdgt.wdgt_nuke_path.setLayout(QtGui.QHBoxLayout())
+    wdgt.wdgt_nuke_path.setLayout(QtWidgets.QHBoxLayout())
     lyt_frm_constants.addWidget(wdgt.wdgt_nuke_path)
 
     # lyt_nuke_path
     lyt_nuke_path = wdgt.wdgt_nuke_path.layout()
 
     # le_nuke_path
-    wdgt.le_nuke_path = QtGui.QLineEdit(parent=wdgt)
+    wdgt.le_nuke_path = QtWidgets.QLineEdit(parent=wdgt)
     wdgt.le_nuke_path.setObjectName('le_nuke_path')
     wdgt.le_nuke_path.setText(nuke_path)
     lyt_nuke_path.addWidget(wdgt.le_nuke_path)
 
     # btn_nuke_path
-    wdgt.btn_nuke_path = QtGui.QPushButton(text='Pick', parent=wdgt)
+    wdgt.btn_nuke_path = QtWidgets.QPushButton(text='Pick', parent=wdgt)
     wdgt.btn_nuke_path.setObjectName('btn_nuke_path')
     lyt_nuke_path.addWidget(wdgt.btn_nuke_path)
 
@@ -1079,7 +1080,7 @@ def create_general_options_menu(wdgt):
                                                                     minimum=1,
                                                                     maximum=5,
                                                                     initial_value=INITIAL_LOGGING_LEVEL / 10)
-    wdgt.sldr_logging_level.set_tick_position(QtGui.QSlider.TicksBelow)
+    wdgt.sldr_logging_level.set_tick_position(QtWidgets.QSlider.TicksBelow)
     wdgt.sldr_logging_level.set_tick_interval(1)
     wdgt.sldr_logging_level.setToolTip(TT_LOGGING_LEVEL)
     lyt_frm_general_options.addWidget(wdgt.sldr_logging_level)
@@ -1089,7 +1090,7 @@ def create_general_options_menu(wdgt):
                                                                 minimum=0,
                                                                 maximum=1,
                                                                 initial_value=INITIAL_SAVE_SCRIPT_BEFORE_RENDER)
-    wdgt.sldr_save_script.set_tick_position(QtGui.QSlider.TicksBelow)
+    wdgt.sldr_save_script.set_tick_position(QtWidgets.QSlider.TicksBelow)
     wdgt.sldr_save_script.set_tick_interval(1)
     wdgt.sldr_save_script.setToolTip(TT_SAVE_SCRIPT)
     lyt_frm_general_options.addWidget(wdgt.sldr_save_script)
@@ -1128,30 +1129,30 @@ def add_beta_tag(wdgt):
     """
 
     # lyt_header_spacer_right
-    lyt_header_spacer_right = QtGui.QVBoxLayout()
+    lyt_header_spacer_right = QtWidgets.QVBoxLayout()
 
     # set layout
     wdgt.wdgt_header_spacer_right.setLayout(lyt_header_spacer_right)
 
     # lbl_beta
-    wdgt.lbl_beta = QtGui.QLabel(text='beta', parent=wdgt)
+    wdgt.lbl_beta = QtWidgets.QLabel(text='beta', parent=wdgt)
     wdgt.lbl_beta.setObjectName('lbl_beta')
     wdgt.lbl_beta.setStyleSheet('QLabel#lbl_beta { background-color: %(black)s; color: %(blue)s;}' % {'black': BLACK.name(), 'blue': BLUE.name()})
     lyt_header_spacer_right.addWidget(wdgt.lbl_beta)
 
     # sp_lbl_beta
-    sp_lbl_beta = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Minimum)
+    sp_lbl_beta = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
     wdgt.lbl_beta.setSizePolicy(sp_lbl_beta)
 
     # wdgt_lbl_beta_spacer
-    wdgt_lbl_beta_spacer = QtGui.QWidget(parent=wdgt)
+    wdgt_lbl_beta_spacer = QtWidgets.QWidget(parent=wdgt)
     wdgt_lbl_beta_spacer.setObjectName('wdgt_lbl_beta_spacer')
     renderthreads_gui_helper.correct_styled_background_attribute(wdgt_lbl_beta_spacer)
     wdgt_lbl_beta_spacer.setStyleSheet('QWidget#wdgt_lbl_beta_spacer { background-color: %(black)s; color: %(blue)s;}' % {'black': BLACK.name(), 'blue': BLUE.name()})
     lyt_header_spacer_right.addWidget(wdgt_lbl_beta_spacer)
 
     # sp_lbl_beta_spacer
-    sp_lbl_beta_spacer = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Expanding)
+    sp_lbl_beta_spacer = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
     wdgt_lbl_beta_spacer.setSizePolicy(sp_lbl_beta_spacer)
 
 
@@ -1171,47 +1172,47 @@ def add_dev_menu(wdgt):
     """
 
     # mnu_dev
-    wdgt.mnu_dev = QtGui.QMenu('Dev', parent=wdgt)
+    wdgt.mnu_dev = QtWidgets.QMenu('Dev', parent=wdgt)
     wdgt.mnu_dev.setObjectName('mnu_dev')
     wdgt.mnubar_stkwdgt.addMenu(wdgt.mnu_dev)
 
     # mnu_dev_nuke
-    wdgt.mnu_dev_nuke = QtGui.QMenu('Nuke', parent=wdgt)
+    wdgt.mnu_dev_nuke = QtWidgets.QMenu('Nuke', parent=wdgt)
     wdgt.mnu_dev_nuke.setObjectName('mnu_dev_nuke')
     wdgt.mnu_dev.addMenu(wdgt.mnu_dev_nuke)
 
     # acn_print_all_write_nodes
-    wdgt.acn_print_all_write_nodes = QtGui.QAction('Print all write nodes', wdgt)
+    wdgt.acn_print_all_write_nodes = QtWidgets.QAction('Print all write nodes', wdgt)
     wdgt.acn_print_all_write_nodes.setObjectName('acn_print_all_write_nodes')
     wdgt.mnu_dev_nuke.addAction(wdgt.acn_print_all_write_nodes)
 
     # acn_print_selected_write_nodes
-    wdgt.acn_print_selected_write_nodes = QtGui.QAction('Print selected write nodes', wdgt)
+    wdgt.acn_print_selected_write_nodes = QtWidgets.QAction('Print selected write nodes', wdgt)
     wdgt.acn_print_selected_write_nodes.setObjectName('acn_print_selected_write_nodes')
     wdgt.mnu_dev_nuke.addAction(wdgt.acn_print_selected_write_nodes)
 
     # acn_print_all_converted_write_nodes
-    wdgt.acn_print_all_converted_write_nodes = QtGui.QAction('Print all converted write nodes', wdgt)
+    wdgt.acn_print_all_converted_write_nodes = QtWidgets.QAction('Print all converted write nodes', wdgt)
     wdgt.acn_print_all_converted_write_nodes.setObjectName('acn_print_all_converted_write_nodes')
     wdgt.mnu_dev_nuke.addAction(wdgt.acn_print_all_converted_write_nodes)
 
     # acn_print_selected_converted_write_nodes
-    wdgt.acn_print_selected_converted_write_nodes = QtGui.QAction('Print selected converted write nodes', wdgt)
+    wdgt.acn_print_selected_converted_write_nodes = QtWidgets.QAction('Print selected converted write nodes', wdgt)
     wdgt.acn_print_selected_converted_write_nodes.setObjectName('acn_print_selected_converted_write_nodes')
     wdgt.mnu_dev_nuke.addAction(wdgt.acn_print_selected_converted_write_nodes)
 
     # mnu_dev_threads
-    wdgt.mnu_dev_threads = QtGui.QMenu('Threads', parent=wdgt)
+    wdgt.mnu_dev_threads = QtWidgets.QMenu('Threads', parent=wdgt)
     wdgt.mnu_dev_threads.setObjectName('mnu_dev_threads')
     wdgt.mnu_dev.addMenu(wdgt.mnu_dev_threads)
 
     # acn_reset_queue
-    wdgt.acn_reset_queue = QtGui.QAction('Reset Queue', wdgt)
+    wdgt.acn_reset_queue = QtWidgets.QAction('Reset Queue', wdgt)
     wdgt.acn_reset_queue.setObjectName('acn_reset_queue')
     wdgt.mnu_dev_threads.addAction(wdgt.acn_reset_queue)
 
     # acn_test_threads
-    wdgt.acn_test_threads = QtGui.QAction('Test threads', wdgt)
+    wdgt.acn_test_threads = QtWidgets.QAction('Test threads', wdgt)
     wdgt.acn_test_threads.setObjectName('acn_test_threads')
     wdgt.mnu_dev_threads.addAction(wdgt.acn_test_threads)
 

@@ -12,8 +12,9 @@ Subclass of QDockWidget to provide ability for custom type checks.
 # python
 import logging
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
+from Qt import QtWidgets
 
 
 # Import variable
@@ -43,7 +44,7 @@ if(do_reload):
 
 # RenderThreadsDockWidget class
 # ------------------------------------------------------------------
-class RenderThreadsDockWidget(QtGui.QDockWidget):
+class RenderThreadsDockWidget(QtWidgets.QDockWidget):
     """
     Subclass of QWidget to allow for custom styling and
     type checking.

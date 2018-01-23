@@ -15,7 +15,7 @@ MVC.
 import os
 import logging
 # PySide
-from PySide import QtCore
+from Qt import QtCore
 # nuke
 import nuke
 

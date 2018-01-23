@@ -12,8 +12,9 @@ with signals and slots.
 # python
 import logging
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
+from Qt import QtWidgets
 
 
 # Import variable
@@ -48,7 +49,7 @@ if(do_reload):
 
 # Slider
 # ------------------------------------------------------------------
-class Slider(QtGui.QWidget):
+class Slider(QtWidgets.QWidget):
     """
     Widget that offers a label used as header and a slider
     with signals and slots.
@@ -129,22 +130,22 @@ class Slider(QtGui.QWidget):
         """
 
         # lyt_slider
-        self.lyt_slider = QtGui.QVBoxLayout(self)
+        self.lyt_slider = QtWidgets.QVBoxLayout(self)
 
         # lbl_slider
-        self.lbl_slider = QtGui.QLabel(text=self.header)
+        self.lbl_slider = QtWidgets.QLabel(text=self.header)
         self.lbl_slider.setObjectName(self.__class__.__name__ + type(self.lbl_slider).__name__)
         self.lyt_slider.addWidget(self.lbl_slider)
 
         # wdgt_slider_and_display
-        self.wdgt_slider_and_display = QtGui.QWidget()
+        self.wdgt_slider_and_display = QtWidgets.QWidget()
         self.lyt_slider.addWidget(self.wdgt_slider_and_display)
 
         # lyt_wdgt_slider_and_display
-        self.lyt_wdgt_slider_and_display = QtGui.QHBoxLayout(self.wdgt_slider_and_display)
+        self.lyt_wdgt_slider_and_display = QtWidgets.QHBoxLayout(self.wdgt_slider_and_display)
 
         # slider
-        self.slider = QtGui.QSlider()
+        self.slider = QtWidgets.QSlider()
         self.slider.setObjectName(self.__class__.__name__ +
                                     type(self.slider).__name__)
         self.slider.setOrientation(QtCore.Qt.Horizontal)
@@ -154,7 +155,7 @@ class Slider(QtGui.QWidget):
         self.lyt_wdgt_slider_and_display.addWidget(self.slider)
 
         # lcd_slider_value
-        self.lcd_slider_value = QtGui.QLCDNumber()
+        self.lcd_slider_value = QtWidgets.QLCDNumber()
         self.lcd_slider_value.display(self.initial_value)
         self.lyt_wdgt_slider_and_display.addWidget(self.lcd_slider_value)
 

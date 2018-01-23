@@ -31,8 +31,9 @@ import sys
 import logging
 import functools
 #  PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
+from Qt import QtWidgets
 
 
 #  Import variable
@@ -137,8 +138,8 @@ class UniversalPrintObject(object):
         if (self.display == sys.stdout):
             return self.print_message_stdout
 
-        #  QtGui.QTextEdit
-        elif (type(self.display) == QtGui.QTextEdit):
+        #  QtWidgets.QTextEdit
+        elif (type(self.display) == QtWidgets.QTextEdit):
             return self.print_message_qtextedit
 
         #  unknown

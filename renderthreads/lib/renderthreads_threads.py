@@ -20,8 +20,8 @@ import time
 import hashlib
 import multiprocessing
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
 
 
 # Import variable

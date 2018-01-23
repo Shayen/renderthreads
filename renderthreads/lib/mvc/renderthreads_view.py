@@ -13,8 +13,9 @@ nodes.
 # python
 import logging
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
+from Qt import QtWidgets
 
 
 #  Import variable
@@ -38,7 +39,7 @@ if(do_reload):
 
 # RenderThreadsView
 # ------------------------------------------------------------------
-class RenderThreadsView(QtGui.QTableView):
+class RenderThreadsView(QtWidgets.QTableView):
     """
     Subclass of QTableView.
     """

@@ -15,9 +15,10 @@ renderthreads MVC.
 import logging
 import functools
 # PySide
-from PySide import QtGui
-from PySide import QtCore
-
+from Qt import QtGui
+from Qt import QtCore
+from Qt import QtCompat
+from Qt import QtWidgets
 
 # Import variable
 do_reload = True
@@ -93,9 +94,11 @@ def create_mvc(wdgt):
     wdgt.nodes_view.setWordWrap(True)
     wdgt.nodes_view.setShowGrid(False)
     # set resize mode for horizontal header
-    wdgt.nodes_view.horizontalHeader().setResizeMode(QtGui.QHeaderView.Stretch)
+    # .setResizeMode(QtGui.QHeaderView.Stretch)
+    QtCompat.setSectionResizeMode(wdgt.nodes_view.horizontalHeader(), QtWidgets.QHeaderView.Stretch)
     wdgt.nodes_view.horizontalHeader().setStretchLastSection(False)
-    wdgt.nodes_view.verticalHeader().setResizeMode(QtGui.QHeaderView.ResizeToContents)
+    # wdgt.nodes_view.verticalHeader().setResizeMode(QtGui.QHeaderView.ResizeToContents)
+    QtCompat.setSectionResizeMode(wdgt.nodes_view.verticalHeader(),QtWidgets.QHeaderView.ResizeToContents)
     wdgt.nodes_view.setAlternatingRowColors(True)
     # objectNames
     wdgt.nodes_view.setObjectName('nodes_view')
@@ -120,7 +123,7 @@ def create_mvc(wdgt):
     wdgt.nodes_view.setModel(wdgt.nodes_model)
 
     # nodes_selection_model
-    wdgt.nodes_selection_model = QtGui.QItemSelectionModel(wdgt.nodes_model)
+    wdgt.nodes_selection_model = QtCore.QItemSelectionModel(wdgt.nodes_model)
     wdgt.nodes_view.setSelectionModel(wdgt.nodes_selection_model)
 
 

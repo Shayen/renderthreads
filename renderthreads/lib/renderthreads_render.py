@@ -19,8 +19,8 @@ import subprocess
 import logging
 import threading
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
 
 
 # Import variable

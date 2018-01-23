@@ -13,8 +13,15 @@ and events.
 # python
 import logging
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
+from Qt import QtWidgets
+
+# try:
+#     QtGui.QProgressBar = QtGui.QProgressBar
+# except :
+#     from PySide2 import QtWidgets
+#     QtGui.QProgressBar = QtWidgets.QProgressBar
 
 
 # Import variable
@@ -44,7 +51,7 @@ BLUE = renderthreads_globals.BLUE
 
 # RenderThreadsProgressBar class
 # ------------------------------------------------------------------
-class RenderThreadsProgressBar(QtGui.QProgressBar):
+class RenderThreadsProgressBar(QtWidgets.QProgressBar):
     """
     Subclass of QProgressBar to provide ability for
     custom type checks and events.

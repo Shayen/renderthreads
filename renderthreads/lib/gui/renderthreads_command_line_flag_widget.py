@@ -15,8 +15,9 @@ interface.
 # python
 import logging
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
+from Qt import QtWidgets
 
 
 # Import variable
@@ -52,7 +53,7 @@ TEXT_DIVIDER = renderthreads_globals.TEXT_DIVIDER
 
 # CommandLineFlag
 # ------------------------------------------------------------------
-class CommandLineFlag(QtGui.QFrame):
+class CommandLineFlag(QtWidgets.QFrame):
     """
     Widget that offers a checkbox to enable/disable the flag.
     A label that represents the flag and a tooltip that explains
@@ -137,23 +138,23 @@ class CommandLineFlag(QtGui.QFrame):
         """
 
         # lyt_command_line_flag
-        self.lyt_command_line_flag = QtGui.QHBoxLayout(self)
+        self.lyt_command_line_flag = QtWidgets.QHBoxLayout(self)
 
         # chkbx_state
-        self.chkbx_state = QtGui.QCheckBox(text='')
+        self.chkbx_state = QtWidgets.QCheckBox(text='')
         self.chkbx_state.setObjectName(self.__class__.__name__ + type(self.chkbx_state).__name__)
         self.chkbx_state.setChecked(self.get_state())
         self.chkbx_state.setEnabled(self.checkable)
         self.lyt_command_line_flag.addWidget(self.chkbx_state)
 
         # wdgt_spacer_chkbx_and_flag
-        self.wdgt_spacer_chkbx_and_flag = QtGui.QWidget()
+        self.wdgt_spacer_chkbx_and_flag = QtWidgets.QWidget()
         self.wdgt_spacer_chkbx_and_flag.setMinimumWidth(10)
         self.wdgt_spacer_chkbx_and_flag.setMaximumWidth(10)
         self.lyt_command_line_flag.addWidget(self.wdgt_spacer_chkbx_and_flag)
 
         # lbl_flag
-        self.lbl_flag = QtGui.QLabel(text=self._flag)
+        self.lbl_flag = QtWidgets.QLabel(text=self._flag)
         self.lbl_flag.setObjectName(self.__class__.__name__ + type(self.lbl_flag).__name__)
         self.lbl_flag.setEnabled(self.get_state())
         self.lyt_command_line_flag.addWidget(self.lbl_flag)
@@ -206,22 +207,22 @@ class CommandLineFlag(QtGui.QFrame):
             return None
 
         # textChanged
-        if (type(self.wdgt_parameter) is QtGui.QLineEdit):
+        if (type(self.wdgt_parameter) is QtWidgets.QLineEdit):
 
             # connect
             self.wdgt_parameter.textChanged.connect(self.parameter_changed)
 
         # currentIndexChanged
-        if (type(self.wdgt_parameter) is QtGui.QComboBox):
+        if (type(self.wdgt_parameter) is QtWidgets.QComboBox):
 
             # connect
             self.wdgt_parameter.currentIndexChanged.connect(self.parameter_changed)
 
         # valueChanged
-        if (type(self.wdgt_parameter) is QtGui.QSpinBox or
-                type(self.wdgt_parameter) is QtGui.QDoubleSpinBox or
-                type(self.wdgt_parameter) is QtGui.QDial or
-                type(self.wdgt_parameter) is QtGui.QSlider):
+        if (type(self.wdgt_parameter) is QtWidgets.QSpinBox or
+                type(self.wdgt_parameter) is QtWidgets.QDoubleSpinBox or
+                type(self.wdgt_parameter) is QtWidgets.QDial or
+                type(self.wdgt_parameter) is QtWidgets.QSlider):
 
             # connect
             self.wdgt_parameter.valueChanged.connect(self.parameter_changed)
@@ -334,22 +335,22 @@ The setter just sets self._flag.")
             return None
 
         # text()
-        if (type(self.wdgt_parameter) is QtGui.QLineEdit):
+        if (type(self.wdgt_parameter) is QtWidgets.QLineEdit):
 
             # get_parameter_with_text
             return self.get_parameter_with_text()
 
         # currentText()
-        if (type(self.wdgt_parameter) is QtGui.QComboBox):
+        if (type(self.wdgt_parameter) is QtWidgets.QComboBox):
 
             # get_parameter_with_currentText
             return self.get_parameter_with_currentText()
 
         # value()
-        if (type(self.wdgt_parameter) is QtGui.QSpinBox or
-                type(self.wdgt_parameter) is QtGui.QDoubleSpinBox or
-                type(self.wdgt_parameter) is QtGui.QDial or
-                type(self.wdgt_parameter) is QtGui.QSlider):
+        if (type(self.wdgt_parameter) is QtWidgets.QSpinBox or
+                type(self.wdgt_parameter) is QtWidgets.QDoubleSpinBox or
+                type(self.wdgt_parameter) is QtWidgets.QDial or
+                type(self.wdgt_parameter) is QtWidgets.QSlider):
 
             # get_parameter_with_value
             return self.get_parameter_with_value()
@@ -373,7 +374,7 @@ The setter just sets self._flag.")
     def get_parameter_with_text(self):
         """
         Return value for wdgt_parameter if
-        wdgt_parameter is QtGui.QLineEdit.
+        wdgt_parameter is QtWidgets.QLineEdit.
         """
 
         return self.wdgt_parameter.text()
@@ -381,7 +382,7 @@ The setter just sets self._flag.")
     def get_parameter_with_currentText(self):
         """
         Return value for wdgt_parameter if
-        wdgt_parameter is QtGui.QComboBox.
+        wdgt_parameter is QtWidgets.QComboBox.
         """
 
         return self.wdgt_parameter.currentText()
@@ -389,7 +390,7 @@ The setter just sets self._flag.")
     def get_parameter_with_value(self):
         """
         Return value for wdgt_parameter if
-        wdgt_parameter is QtGui.QSpinBox.
+        wdgt_parameter is QtWidgets.QSpinBox.
         """
 
         return self.wdgt_parameter.value()

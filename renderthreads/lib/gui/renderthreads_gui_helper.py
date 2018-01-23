@@ -16,8 +16,10 @@ import os
 import logging
 import webbrowser
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
+from Qt import QtWidgets
+from Qt import __binding__
 
 
 # Import variable
@@ -49,7 +51,6 @@ if(do_reload):
 # ------------------------------------------------------------------
 # Pathes
 THIRD_PARTY_PATH = renderthreads_globals.THIRD_PARTY_PATH
-
 
 # logger (Module Level)
 # ------------------------------------------------------------------
@@ -113,7 +114,7 @@ def check_and_delete_wdgt_instances_with_class_name(wdgt_class_name):
     get_wdgt_closure = get_widget_by_class_name_closure(wdgt_class_name)
 
     # wdgt_list
-    wdgt_list = filter(get_wdgt_closure, QtGui.QApplication.allWidgets())
+    wdgt_list = filter(get_wdgt_closure, QtWidgets.QApplication.allWidgets())
 
     # iterate and delete
     for index, wdgt in enumerate(wdgt_list):
@@ -147,7 +148,7 @@ def check_and_delete_wdgt_instances_with_name(wdgt_name):
     get_wdgt_closure = get_widget_by_name_closure(wdgt_name)
 
     # wdgt_list
-    wdgt_list = filter(get_wdgt_closure, QtGui.QApplication.allWidgets())
+    wdgt_list = filter(get_wdgt_closure, QtWidgets.QApplication.allWidgets())
 
     # iterate and delete
     for index, wdgt in enumerate(wdgt_list):
@@ -171,7 +172,11 @@ def load_ui_type(ui_file):
     Pyside lacks the "loadUiType" command, so we have to convert the ui file to py code in-memory first
     and then execute it in a special frame to retrieve the form_class.
     This function return the form and base classes for the given qtdesigner ui file.
-    """
+    """     
+    import nuke
+
+    nuke.tprint(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    nuke.tprint(ui_file)
 
     # add path for pysideuic
     import sys
@@ -188,11 +193,20 @@ def load_ui_type(ui_file):
         from cStringIO import StringIO
         import xml.etree.ElementTree as xml
         import types
-        # PySide
-        from PySide import QtGui
-        from PySide import QtCore
-        from PySide import QtUiTools
-        import pysideuic
+
+        from Qt import QtGui
+        from Qt import QtCore
+        try:
+            from PySide import QtUiTools
+        except :
+            from PySide2 import QtUiTools
+
+        if int(__binding__) < 2:
+            import pysideuic
+            pysideuic = pysideuic
+        else :
+            import pyside2uic
+            pysideuic = pyside2uic
 
     except Exception as exception_instance:
         # log
@@ -218,6 +232,9 @@ def load_ui_type(ui_file):
         form_class = frame['Ui_%s' % form_class]
         base_class = eval('QtGui.%s' % widget_class)
 
+    nuke.tprint ('<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+    nuke.tprint(form_class, base_class)
+    nuke.tprint('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
     return form_class, base_class
 
 
@@ -227,9 +244,10 @@ def get_nuke_main_window():
     """
 
     try:
-        # PySide
-        from PySide import QtGui
-        from PySide import QtCore
+        # Qt binder [Pyside, Pyside2]
+        from Qt import QtGui
+        from Qt import QtCore
+        from Qt import QtWidgets
 
     except Exception as exception_instance:
 
@@ -239,7 +257,7 @@ def get_nuke_main_window():
         return None
 
     # ptr_main_window
-    ptr_main_window = QtGui.QApplication.activeWindow()
+    ptr_main_window = QtWidgets.QApplication.activeWindow()
 
     # if True
     if (ptr_main_window):
@@ -261,13 +279,13 @@ def correct_styled_background_attribute(wdgt):
     """
 
     # wdgt_list
-    wdgt_list = wdgt.findChildren(QtGui.QWidget)  # Return several types ?!?!
+    wdgt_list = wdgt.findChildren(QtWidgets.QWidget)  # Return several types ?!?!
 
     # iterate and set
     for wdgt in wdgt_list:
 
         # check type
-        if(type(wdgt) is QtGui.QWidget):
+        if(type(wdgt) is QtWidgets.QWidget):
 
             # styled_background
             wdgt.setAttribute(QtCore.Qt.WA_StyledBackground, True)
@@ -279,8 +297,8 @@ def set_margins_and_spacing_for_child_layouts(wdgt, margin_list=[0, 0, 0, 0]):
     """
 
     # lyt_classes_list
-    lyt_classes_list = [QtGui.QStackedLayout, QtGui.QGridLayout, QtGui.QFormLayout,
-                        QtGui.QBoxLayout, QtGui.QVBoxLayout, QtGui.QHBoxLayout, QtGui.QBoxLayout]
+    lyt_classes_list = [QtWidgets.QStackedLayout, QtWidgets.QGridLayout, QtWidgets.QFormLayout,
+                        QtWidgets.QBoxLayout, QtWidgets.QVBoxLayout, QtWidgets.QHBoxLayout, QtWidgets.QBoxLayout]
 
     # lyt_list
     lyt_list = []
@@ -308,13 +326,13 @@ def insert_spacer_widget(wdgt_or_lyt, minimum_width=0, minimum_height=0, parent=
     lyt = wdgt_or_lyt
 
     # not instance of layout
-    if not (isinstance(lyt, QtGui.QLayout)):
+    if not (isinstance(lyt, QtWidgets.QLayout)):
 
         # lyt
         lyt = wdgt_or_lyt.layout()
 
     # wdgt_spacer
-    wdgt_spacer = QtGui.QWidget(parent=parent)
+    wdgt_spacer = QtWidgets.QWidget(parent=parent)
     wdgt_spacer.setMinimumWidth(minimum_width)
     wdgt_spacer.setMinimumHeight(minimum_height)
 
@@ -381,7 +399,7 @@ def make_dockable(wdgt):
     nuke_main_window = get_nuke_main_window()
 
     # q_main_window_list
-    q_main_window_list = nuke_main_window.findChildren(QtGui.QMainWindow)
+    q_main_window_list = nuke_main_window.findChildren(QtWidgets.QMainWindow)
     # check
     if not (q_main_window_list):
         # log
@@ -413,7 +431,7 @@ def pick_file(wdgt_display=None, filter_string=None):
     """
 
     # file_path
-    file_path, selected_filter = QtGui.QFileDialog.getOpenFileName(filter=filter_string)
+    file_path, selected_filter = QtWidgets.QFileDialog.getOpenFileName(filter=filter_string)
     file_path = str(file_path)
 
     # check
@@ -429,8 +447,8 @@ def pick_file(wdgt_display=None, filter_string=None):
     if (wdgt_display):
 
         # setText()
-        if (type(wdgt_display) is QtGui.QLineEdit or
-                type(wdgt_display) is QtGui.QLabel):
+        if (type(wdgt_display) is QtWidgets.QLineEdit or
+                type(wdgt_display) is QtWidgets.QLabel):
 
             # set
             wdgt_display.setText(file_path)

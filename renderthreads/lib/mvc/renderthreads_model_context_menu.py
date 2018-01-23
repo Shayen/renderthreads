@@ -21,8 +21,9 @@ import os
 import functools
 import logging
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
+from Qt import QtWidgets
 
 
 # Import variable
@@ -73,7 +74,7 @@ if(do_reload):
 
 # NodesContextMenu
 # ------------------------------------------------------------------
-class NodesContextMenu(QtGui.QMenu):
+class NodesContextMenu(QtWidgets.QMenu):
     """
     Customized context menu for the model
     that manages the renderthread nodes.
@@ -141,12 +142,12 @@ class NodesContextMenu(QtGui.QMenu):
         """
 
         # acn_add_selected
-        self.acn_add_selected = QtGui.QAction('Add selected write nodes', self)
+        self.acn_add_selected = QtWidgets.QAction('Add selected write nodes', self)
         self.acn_add_selected.setObjectName(self.__class__.__name__ + '_' + 'acn_add_selected')
         self.addAction(self.acn_add_selected)
 
         # acn_add_all
-        self.acn_add_all = QtGui.QAction('Add all write nodes', self)
+        self.acn_add_all = QtWidgets.QAction('Add all write nodes', self)
         self.acn_add_all.setObjectName(self.__class__.__name__ + '_' + 'acn_add_all')
         self.addAction(self.acn_add_all)
 
@@ -154,17 +155,17 @@ class NodesContextMenu(QtGui.QMenu):
         self.addSeparator()
 
         # mnu_render
-        self.mnu_render = QtGui.QMenu('Render', parent=self)
+        self.mnu_render = QtWidgets.QMenu('Render', parent=self)
         self.mnu_render.setObjectName(self.__class__.__name__ + '_' + 'mnu_render')
         self.addMenu(self.mnu_render)
 
         # acn_render_selected
-        self.acn_render_selected = QtGui.QAction('Render selected nodes', self)
+        self.acn_render_selected = QtWidgets.QAction('Render selected nodes', self)
         self.acn_render_selected.setObjectName(self.__class__.__name__ + '_' + 'acn_render_selected')
         self.mnu_render.addAction(self.acn_render_selected)
 
         # acn_render_all
-        self.acn_render_all = QtGui.QAction('Render all nodes', self)
+        self.acn_render_all = QtWidgets.QAction('Render all nodes', self)
         self.acn_render_all.setObjectName(self.__class__.__name__ + '_' + 'acn_render_all')
         self.mnu_render.addAction(self.acn_render_all)
 
@@ -172,12 +173,12 @@ class NodesContextMenu(QtGui.QMenu):
         self.mnu_render.addSeparator()
 
         # acn_disable_render_selected
-        self.acn_disable_render_selected = QtGui.QAction('Disable selected', self)
+        self.acn_disable_render_selected = QtWidgets.QAction('Disable selected', self)
         self.acn_disable_render_selected.setObjectName(self.__class__.__name__ + '_' + 'acn_disable_render_selected')
         self.mnu_render.addAction(self.acn_disable_render_selected)
 
         # acn_disable_render_all
-        self.acn_disable_render_all = QtGui.QAction('Disable all', self)
+        self.acn_disable_render_all = QtWidgets.QAction('Disable all', self)
         self.acn_disable_render_all.setObjectName(self.__class__.__name__ + '_' + 'acn_disable_render_all')
         self.mnu_render.addAction(self.acn_disable_render_all)
 
@@ -185,17 +186,17 @@ class NodesContextMenu(QtGui.QMenu):
         self.addSeparator()
 
         # mnu_remove
-        self.mnu_remove = QtGui.QMenu('Remove', parent=self)
+        self.mnu_remove = QtWidgets.QMenu('Remove', parent=self)
         self.mnu_remove.setObjectName(self.__class__.__name__ + '_' + 'mnu_remove')
         self.addMenu(self.mnu_remove)
 
         # acn_remove_selected
-        self.acn_remove_selected = QtGui.QAction('Remove selected nodes', self)
+        self.acn_remove_selected = QtWidgets.QAction('Remove selected nodes', self)
         self.acn_remove_selected.setObjectName(self.__class__.__name__ + '_' + 'acn_remove_selected')
         self.mnu_remove.addAction(self.acn_remove_selected)
 
         # acn_remove_all
-        self.acn_remove_all = QtGui.QAction('Remove all nodes', self)
+        self.acn_remove_all = QtWidgets.QAction('Remove all nodes', self)
         self.acn_remove_all.setObjectName(self.__class__.__name__ + '_' + 'acn_remove_all')
         self.mnu_remove.addAction(self.acn_remove_all)
 
@@ -203,17 +204,17 @@ class NodesContextMenu(QtGui.QMenu):
         self.addSeparator()
 
         # mnu_select
-        self.mnu_select = QtGui.QMenu('Select', parent=self)
+        self.mnu_select = QtWidgets.QMenu('Select', parent=self)
         self.mnu_select.setObjectName(self.__class__.__name__ + '_' + 'mnu_select')
         self.addMenu(self.mnu_select)
 
         # acn_select_selected
-        self.acn_select_selected = QtGui.QAction('Select selected nodes', self)
+        self.acn_select_selected = QtWidgets.QAction('Select selected nodes', self)
         self.acn_select_selected.setObjectName(self.__class__.__name__ + '_' + 'acn_select_selected')
         self.mnu_select.addAction(self.acn_select_selected)
 
         # acn_select_all
-        self.acn_select_all = QtGui.QAction('Select all nodes', self)
+        self.acn_select_all = QtWidgets.QAction('Select all nodes', self)
         self.acn_select_all.setObjectName(self.__class__.__name__ + '_' + 'acn_select_all')
         self.mnu_select.addAction(self.acn_select_all)
 
@@ -221,7 +222,7 @@ class NodesContextMenu(QtGui.QMenu):
         self.mnu_select.addSeparator()
 
         # acn_deselect_all
-        self.acn_deselect_all = QtGui.QAction('Deselect all DAG nodes', self)
+        self.acn_deselect_all = QtWidgets.QAction('Deselect all DAG nodes', self)
         self.acn_deselect_all.setObjectName(self.__class__.__name__ + '_' + 'acn_deselect_all')
         self.mnu_select.addAction(self.acn_deselect_all)
 
@@ -232,7 +233,7 @@ class NodesContextMenu(QtGui.QMenu):
             self.addSeparator()
 
             # mnu_dev
-            self.mnu_dev = QtGui.QMenu('Dev', parent=self)
+            self.mnu_dev = QtWidgets.QMenu('Dev', parent=self)
             self.mnu_dev.setObjectName(self.__class__.__name__ + '_' + 'mnu_dev')
             self.addMenu(self.mnu_dev)
 

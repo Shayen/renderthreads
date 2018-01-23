@@ -17,8 +17,8 @@ every once in a while or real daemon threads.
 import logging
 import functools
 # PySide
-from PySide import QtGui
-from PySide import QtCore
+from Qt import QtGui
+from Qt import QtCore
 
 
 # Import variable
